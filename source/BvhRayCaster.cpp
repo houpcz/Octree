@@ -1,11 +1,11 @@
 #include "BvhRayCaster.h"
 #include "Bvh.h"
-#include "Ray.h"
+#include "mmRay.h"
 
 
 // cast ray
 int
-BvhRayCaster::CastRay(Ray &ray)
+BvhRayCaster::CastRay(mmRay &ray)
 {
   return mBvh->CastRay(ray);
 }

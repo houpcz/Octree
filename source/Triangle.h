@@ -15,7 +15,7 @@ using namespace std;
 #include "common.h"
 
 // Forward declarations
-class Ray;
+class mmRay;
 
 // A triangle represented by 3 vertices and one color
 // for the whole triangle
@@ -87,7 +87,7 @@ struct Triangle
 	return AxisAlignedBox3(GetMin(), GetMax());
   }
   
-  void CastRay(Ray &ray);
+  void CastRay(mmRay &ray);
 };
 
 // Just a container of triangles

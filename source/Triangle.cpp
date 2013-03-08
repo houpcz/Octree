@@ -3,11 +3,11 @@
 
 // local headers
 #include "Triangle.h"
-#include "Ray.h"
+#include "mmRay.h"
 
 // Computes a ray-triangle intersection
 void
-Triangle::CastRay(Ray &ray)
+Triangle::CastRay(mmRay &ray)
 {	
   //////////////
   // specialised triangle ray casting version

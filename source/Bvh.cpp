@@ -8,7 +8,7 @@
 #include "Environment.h"
 #include "Scene.h"
 #include "Bvh.h"
-#include "Ray.h"
+#include "mmRay.h"
 
 
 // Constructor
@@ -412,7 +412,7 @@ Bvh::UpdateBoxes(BvhNode *node)
 // Cast a ray through BVH hierarchy and find a nearest intersection
 // This is a naive implementation
 bool
-Bvh::CastRay(Ray &ray)
+Bvh::CastRay(mmRay &ray)
 {
   ray.Reset();
 

@@ -8,7 +8,7 @@
 #include "Bvh.h"
 #include "GvsPreprocessor.h"
 #include "Environment.h"
-#include "Ray.h"
+#include "mmRay.h"
 #include "BvhRayCaster.h"
 
 #ifdef USE_MLRT

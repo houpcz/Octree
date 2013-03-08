@@ -2,8 +2,8 @@
 // $Id: Ray.h,v 1.1 2007/02/14 12:03:52 bittner Exp $
 // This file has been written by Jiri Bittner, October 2006
 
-#ifndef __RAY_H
-#define __RAY_H
+#ifndef __MMRAY_H
+#define __MMRAY_H
 
 #include "mmVector3.h"
 #include <vector>
@@ -13,7 +13,7 @@ using namespace std;
 class Triangle;
 
 // Class representing a ray: oriented halfline
-struct Ray
+struct mmRay
 {
 public:
   // origin of the ray
@@ -28,7 +28,7 @@ public:
   // intersected triangle
   Triangle *triangle;
   
-  Ray(): triangle(NULL) { }
+  mmRay(): triangle(NULL) { }
   
   void Reset() {
     triangle = NULL;
@@ -38,7 +38,7 @@ public:
   mmVector3 ComputeInvertedDir() const;  
 };
 
-class RayContainer : public vector<Ray>
+class RayContainer : public vector<mmRay>
 {
 public:
   RayContainer() {}

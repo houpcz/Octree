@@ -132,7 +132,7 @@ public:
 
   // Cast a ray (ray shooting) using BVH
   bool
-  CastRay(Ray &ray);
+  CastRay(mmRay &ray);
 };
 
 #endif //  __BVH_H

@@ -5,7 +5,7 @@
 #ifndef __GVS_PREPROCESSOR_H
 #define __GVS_PREPROCESSOR_H
 
-#include "Ray.h"
+#include "mmRay.h"
 
 // This computes the visibility results for set of rays
 

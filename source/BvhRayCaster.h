@@ -22,7 +22,7 @@ public:
   }
 
   // cast ray
-  int CastRay(Ray &ray);
+  int CastRay(mmRay &ray);
   
   // cast ray bucket
   int CastRays(RayContainer &rays);

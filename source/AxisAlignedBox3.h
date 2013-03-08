@@ -6,7 +6,7 @@
 #define _AxisAlignedBox3_H__
 
 #include "mmVector3.h"
-class Ray;
+class mmRay;
 
 class AxisAlignedBox3
 {
@@ -74,7 +74,7 @@ public:
 
 
   bool
-  ComputeMinMaxT(const Ray &ray,
+  ComputeMinMaxT(const mmRay &ray,
 		 float &tmin,
 		 float &tmax) const;
   

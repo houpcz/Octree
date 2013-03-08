@@ -1,13 +1,13 @@
 // ===================================================================
 // $Id: AxisAlignedBox3.cpp,v 1.1 2007/02/14 12:03:52 bittner Exp $
 
-#include "Ray.h"
+#include "mmRay.h"
 #include "AxisAlignedBox3.h"
 
 
 // Compute the intersection of a ray with the box
 bool
-AxisAlignedBox3::ComputeMinMaxT(const Ray &ray,
+AxisAlignedBox3::ComputeMinMaxT(const mmRay &ray,
 								float &tmin,
 								float &tmax) const
 {

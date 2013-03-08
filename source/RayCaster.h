@@ -1,7 +1,7 @@
 #ifndef __RAYCASTER_H
 #define __RAYCASTER_H
 
-class Ray;
+class mmRay;
 class RayContainer;
 
 class RayCaster {
@@ -10,7 +10,7 @@ public:
   enum {BVH_RAY_CASTER, INTEL_RAY_CASTER};
 
   RayCaster() {}
-  virtual int CastRay(Ray &ray) = 0;
+  virtual int CastRay(mmRay &ray) = 0;
   
   // cast ray
   virtual int CastRays(RayContainer &rays) = 0;

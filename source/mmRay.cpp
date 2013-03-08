@@ -2,10 +2,10 @@
 // $Id: Ray.cpp,v 1.1 2007/02/14 12:03:52 bittner Exp $
 
 // local headers
-#include "Ray.h"
+#include "mmRay.h"
 
 mmVector3
-Ray::ComputeInvertedDir() const
+mmRay::ComputeInvertedDir() const
 {
   const float eps = 1e-6f;
   const float invEps = 1e6f;
