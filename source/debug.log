@@ -1,7 +1,7 @@
 Info: Application started
 Info: scene filename = data/teapot.obj
 Error: cannot open file for reading data/teapot.obj.bin
-Info: scene parsed in 0.087506 seconds
+Info: scene parsed in 0.218763 seconds
 Info: #triangles = 6320
 Info: Scene bounding box (-3, 0, -2):(3.434, 3.15, 2)
 Info: Constructing BVH

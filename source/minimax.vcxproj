@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{DDD120BA-5C3F-3465-9D95-08E745B85D8B}</ProjectGuid>
+    <ProjectGuid>{9CCBC267-9D83-37BC-A632-524B90EFA89B}</ProjectGuid>
     <RootNamespace>minimax</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
@@ -54,7 +54,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>"..\..\Qt\4.8.4\include\QtCore";"..\..\Qt\4.8.4\include\QtGui";"..\..\Qt\4.8.4\include\QtOpenGL";"..\..\Qt\4.8.4\include";"support\Zlib\include";"..\..\Qt\4.8.4\include\ActiveQt";"release";..\..\Qt\4.8.4\mkspecs\default;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>"..\..\..\Qt\4.8.4\include\QtCore";"..\..\..\Qt\4.8.4\include\QtGui";"..\..\..\Qt\4.8.4\include\QtOpenGL";"..\..\..\Qt\4.8.4\include";"support\Zlib\include";"..\..\..\Qt\4.8.4\include\ActiveQt";"release";..\..\..\Qt\4.8.4\mkspecs\default;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm200 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -95,7 +95,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>"..\..\Qt\4.8.4\include\QtCore";"..\..\Qt\4.8.4\include\QtGui";"..\..\Qt\4.8.4\include\QtOpenGL";"..\..\Qt\4.8.4\include";"support\Zlib\include";"..\..\Qt\4.8.4\include\ActiveQt";"debug";..\..\Qt\4.8.4\mkspecs\default;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>"..\..\..\Qt\4.8.4\include\QtCore";"..\..\..\Qt\4.8.4\include\QtGui";"..\..\..\Qt\4.8.4\include\QtOpenGL";"..\..\..\Qt\4.8.4\include";"support\Zlib\include";"..\..\..\Qt\4.8.4\include\ActiveQt";"debug";..\..\..\Qt\4.8.4\mkspecs\default;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm200 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -157,21 +157,21 @@
   <ItemGroup>
     <CustomBuild Include="BasicRenderer.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BasicRenderer.h;C:\Qt\4.8.4\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\4.8.4\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I"..\..\Qt\4.8.4\include\QtCore" -I"..\..\Qt\4.8.4\include\QtGui" -I"..\..\Qt\4.8.4\include\QtOpenGL" -I"..\..\Qt\4.8.4\include" -I"support\Zlib\include" -I"..\..\Qt\4.8.4\include\ActiveQt" -I"release" -I..\..\Qt\4.8.4\mkspecs\default -D_MSC_VER=1600 -DWIN32 BasicRenderer.h -o release\moc_BasicRenderer.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\4.8.4\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I"..\..\..\Qt\4.8.4\include\QtCore" -I"..\..\..\Qt\4.8.4\include\QtGui" -I"..\..\..\Qt\4.8.4\include\QtOpenGL" -I"..\..\..\Qt\4.8.4\include" -I"support\Zlib\include" -I"..\..\..\Qt\4.8.4\include\ActiveQt" -I"release" -I..\..\..\Qt\4.8.4\mkspecs\default -D_MSC_VER=1600 -DWIN32 BasicRenderer.h -o release\moc_BasicRenderer.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC BasicRenderer.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_BasicRenderer.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BasicRenderer.h;C:\Qt\4.8.4\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\4.8.4\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I"..\..\Qt\4.8.4\include\QtCore" -I"..\..\Qt\4.8.4\include\QtGui" -I"..\..\Qt\4.8.4\include\QtOpenGL" -I"..\..\Qt\4.8.4\include" -I"support\Zlib\include" -I"..\..\Qt\4.8.4\include\ActiveQt" -I"debug" -I..\..\Qt\4.8.4\mkspecs\default -D_MSC_VER=1600 -DWIN32 BasicRenderer.h -o debug\moc_BasicRenderer.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\4.8.4\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I"..\..\..\Qt\4.8.4\include\QtCore" -I"..\..\..\Qt\4.8.4\include\QtGui" -I"..\..\..\Qt\4.8.4\include\QtOpenGL" -I"..\..\..\Qt\4.8.4\include" -I"support\Zlib\include" -I"..\..\..\Qt\4.8.4\include\ActiveQt" -I"debug" -I..\..\..\Qt\4.8.4\mkspecs\default -D_MSC_VER=1600 -DWIN32 BasicRenderer.h -o debug\moc_BasicRenderer.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC BasicRenderer.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_BasicRenderer.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="RendererWidget.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\4.8.4\bin\moc.exe;RendererWidget.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\4.8.4\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I"..\..\Qt\4.8.4\include\QtCore" -I"..\..\Qt\4.8.4\include\QtGui" -I"..\..\Qt\4.8.4\include\QtOpenGL" -I"..\..\Qt\4.8.4\include" -I"support\Zlib\include" -I"..\..\Qt\4.8.4\include\ActiveQt" -I"release" -I..\..\Qt\4.8.4\mkspecs\default -D_MSC_VER=1600 -DWIN32 RendererWidget.h -o release\moc_RendererWidget.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\4.8.4\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I"..\..\..\Qt\4.8.4\include\QtCore" -I"..\..\..\Qt\4.8.4\include\QtGui" -I"..\..\..\Qt\4.8.4\include\QtOpenGL" -I"..\..\..\Qt\4.8.4\include" -I"support\Zlib\include" -I"..\..\..\Qt\4.8.4\include\ActiveQt" -I"release" -I..\..\..\Qt\4.8.4\mkspecs\default -D_MSC_VER=1600 -DWIN32 RendererWidget.h -o release\moc_RendererWidget.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC RendererWidget.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_RendererWidget.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\4.8.4\bin\moc.exe;RendererWidget.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\4.8.4\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I"..\..\Qt\4.8.4\include\QtCore" -I"..\..\Qt\4.8.4\include\QtGui" -I"..\..\Qt\4.8.4\include\QtOpenGL" -I"..\..\Qt\4.8.4\include" -I"support\Zlib\include" -I"..\..\Qt\4.8.4\include\ActiveQt" -I"debug" -I..\..\Qt\4.8.4\mkspecs\default -D_MSC_VER=1600 -DWIN32 RendererWidget.h -o debug\moc_RendererWidget.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\4.8.4\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I"..\..\..\Qt\4.8.4\include\QtCore" -I"..\..\..\Qt\4.8.4\include\QtGui" -I"..\..\..\Qt\4.8.4\include\QtOpenGL" -I"..\..\..\Qt\4.8.4\include" -I"support\Zlib\include" -I"..\..\..\Qt\4.8.4\include\ActiveQt" -I"debug" -I..\..\..\Qt\4.8.4\mkspecs\default -D_MSC_VER=1600 -DWIN32 RendererWidget.h -o debug\moc_RendererWidget.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC RendererWidget.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_RendererWidget.cpp;%(Outputs)</Outputs>
     </CustomBuild>

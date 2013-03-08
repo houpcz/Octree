@@ -1,6 +1,7 @@
 // ===================================================================
 // $Id: RendererWidget.cpp,v 1.1 2007/02/14 12:03:52 bittner Exp $
 
+
 #include "GL\glut.h"
 
 // Qt headers
