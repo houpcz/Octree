@@ -7,6 +7,7 @@
 
 #include "sglcontext.h"
 #include <iostream>
+#include <qdebug.h>
 #include <math.h>
 #include <string.h>
 
@@ -313,24 +314,12 @@ void SglContext::raytrace()
 	int primitiveSize = primitive.size();
 
 	
-	for(int loop1 = 0; loop1 < viewportHeight; loop1++)
+	for(int loop1 = 200; loop1 < viewportHeight - 200; loop1++)
 	{
+		cout << "Row number " << loop1 + 1 << endl;
 		for(int loop2 = 0; loop2 < viewportWidth; loop2++)
 		{
-	
-	/*for(int loop1 = 400; loop1 < 490; loop1++)
-	{
-		for(int loop2 = 212; loop2 < 300; loop2++)
-		{*/
-			/*
-			result = Color(0, 0, 0);
-			for(int loop3 = 0; loop3 < 4; loop3++)
-			{
-				rayColor[loop3] = traceRay(loop2 + 0.25f * (loop3 / 2), loop1 + 0.25f * (loop3 % 2), matrixInvert);
-				result = result + rayColor[loop3];
-			}
-			result = result / 4;
-			*/
+
 			Ray ray = makeRay(loop2 + 0.5f, loop1 + 0.5f, matrixInvert);
 
 			int idLight = -1;

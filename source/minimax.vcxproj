@@ -209,6 +209,7 @@
     <ClInclude Include="mmColor.h" />
     <ClInclude Include="mmRay.h" />
     <ClInclude Include="mmVector3.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="sgl.h" />
     <ClInclude Include="sglcontext.h" />
     <ClInclude Include="sglprimitive.h" />

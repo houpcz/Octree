@@ -131,6 +131,23 @@ BasicRenderer::RenderScene()
   mmVector3 translation = -scene->box.Center();
   glTranslatef(translation.x, translation.y, translation.z);
 
+  /*
+  float projMatrix[16];
+  float modelMatrix[16];
+  glGetFloatv(GL_PROJECTION, projMatrix);
+  glGetFloatv(GL_MODELVIEW, modelMatrix);
+
+  FILE * fw = fopen("matrices", "wb");
+  fwrite(projMatrix, sizeof(float), 16, fw);
+  fwrite(modelMatrix, sizeof(float), 16, fw);
+  fclose(fw);
+  
+  FILE * fr = fopen("matrices", "rb");
+  fread(projMatrix, sizeof(float), 16, fr);
+  fread(modelMatrix, sizeof(float), 16, fr);
+  fclose(fr);
+  */
+
   // Render the whole scene
   // Just loop over all triangles
   TriangleContainer::const_iterator ti = scene->triangles.begin();
@@ -148,7 +165,7 @@ BasicRenderer::RenderScene()
   bool wireframe = mWireframe;
   int calls = 0;
 
-  bool useBvh = true;
+  bool useBvh = false;
   
   if (!wireframe) {
 	

@@ -93,8 +93,8 @@ Scene::Preprocess()
   ComputeBoundingBox();
   // Normalize();
   
-  bvh = new Bvh(*this);
-  bvh->Construct();
+  //bvh = new Bvh(*this);
+  //bvh->Construct();
 
   return;
 }

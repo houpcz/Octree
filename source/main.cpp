@@ -63,8 +63,8 @@ main(int argc, char **argv)
   scene->Preprocess();
 
   // Computes the result using a data structure
-  GvsPreprocessor *preprocessor = new GvsPreprocessor(scene);
-  preprocessor->ComputeVisibility();
+  //GvsPreprocessor *preprocessor = new GvsPreprocessor(scene);
+  //preprocessor->ComputeVisibility();
   
   // now do the Qt stuff
   if (1) {

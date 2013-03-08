@@ -15,7 +15,7 @@
 
 using namespace std;
 
-static inline void setErrCode(sglEErrorCode c);
+void setErrCode(sglEErrorCode c);
 
 // Nasobeni matic, vysledek se ulozi do outputmatrix
 void MultMatrix(float * outputmatrix, const float *matrix1, const float *matrix2);

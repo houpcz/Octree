@@ -113,7 +113,7 @@ RendererWidget::paintGL()
   glLoadIdentity();
   gluLookAt(0.0, 0.0, 1.0,  /* eye is at (0,0,30) */
 			0.0, 0.0, 0.0,      /* center is at (0,0,0) */
-			0.0, 1.0, 0.);      /* up is in positive Y direction */
+			0.0, 1.0, 0.0);      /* up is in positive Y direction */
   
   build_rotmatrix(m, manipulatorLastQuat);
   glMultMatrixf(&m[0][0]);
@@ -125,6 +125,7 @@ RendererWidget::paintGL()
   //  glRotated(zRot / 16.0, 0.0, 0.0, 1.0);
 
   glScalef(scale, scale, scale);
+
   RenderScene();
 }
 
@@ -136,6 +137,12 @@ RendererWidget::resizeGL(int width, int height)
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluPerspective(70.0, 1.0, 0.1, 100.0);
+
+  GLdouble projMatrix[16];
+  GLdouble modelMatrix[16];
+  glGetDoublev(GL_PROJECTION, projMatrix);
+  glGetDoublev(GL_MODELVIEW, modelMatrix);
+
   //  glOrtho(-0.5*width/height, +0.5*width/height, 0.5, -0.5, 4.0, 15.0);
   glMatrixMode(GL_MODELVIEW);
 }

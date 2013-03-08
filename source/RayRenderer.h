@@ -6,6 +6,7 @@
 #define __RAY_RENDERER_H
 
 #include "RendererWidget.h"
+#include "sglcontext.h"
 #include <vector>
 using namespace std;
 
@@ -24,6 +25,7 @@ public:
 
   // This renders the whole scene
   void RenderScene();
+  ~RayRenderer();
 
   void
   RenderTriangle(const Triangle &t);
@@ -52,6 +54,9 @@ protected:
   Scene *scene;
   int trianglesPerCall;
   vector<unsigned int> textures;
+  int contextWidth;
+  int contextHeight;
+  int contextID;
 };
 
 
