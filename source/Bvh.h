@@ -35,7 +35,7 @@ struct BvhInterior :
 struct BvhLeaf :
   public BvhNode
 {
-  Color color;
+  mmColor color;
   int texture;
   int glList;
   

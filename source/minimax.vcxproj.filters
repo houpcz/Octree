@@ -131,5 +131,8 @@
     <ClInclude Include="CentralWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mmColor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

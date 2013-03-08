@@ -11,9 +11,10 @@ using namespace std;
 #include "common.h"
 
 // Color with alpha-channel for OpenGL rendering
-struct Color
+
+struct mmColor
 {
-  Color() {}
+  mmColor() {}
   void Random() {
     r = ::RandomValue(0,255);
     g = ::RandomValue(0,255);
@@ -24,10 +25,10 @@ struct Color
 };
 
 
-inline Color
+inline mmColor
 RainbowColorMapping(const float _value)
 {
-  Color color;
+  mmColor color;
 
   float value = 4.0f*(1.0f - _value);
 

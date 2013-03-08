@@ -167,7 +167,7 @@ RayRenderer::RenderScene()
 		glColor3ub((*ti)->color.r, (*ti)->color.g, (*ti)->color.b);
 #else
 		int maxCalls = scene->triangles.size()/trianglesPerCall;
-		Color color = RainbowColorMapping(calls/(float)maxCalls);
+		mmColor color = RainbowColorMapping(calls/(float)maxCalls);
 		glColor3ub(color.r, color.g, color.b);
 #endif		
 		static int textureId = 0;
@@ -282,10 +282,10 @@ RayRenderer::RenderBvhLeaf(BvhLeaf *leaf)
 	glColor3ub(t->color.r, t->color.g, t->color.b);
 #else
 	float x = 100.0f*leaf->box.SurfaceArea()/scene->box.SurfaceArea();
-	Color color = RainbowColorMapping(x);
+	mmColor color = RainbowColorMapping(x);
 #if 0
 	float scale = trianglesPerCall/1000000.0f;
-	Color color = RainbowColorMapping(scale*leaf->depth);
+	mmColor color = RainbowColorMapping(scale*leaf->depth);
 #endif
 	glColor3ub(color.r, color.g, color.b);
 #endif	

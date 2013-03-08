@@ -9,7 +9,7 @@
 #include <vector>
 using namespace std;
 
-#include "Color.h"
+#include "mmColor.h"
 #include "Vector3.h"
 #include "AxisAlignedBox3.h"
 #include "common.h"
@@ -23,7 +23,7 @@ struct Triangle
 {
   unsigned short boundingBoxIndices;
   Vector3 vertices[3];
-  Color color;
+  mmColor color;
   
   Triangle() {}
   
