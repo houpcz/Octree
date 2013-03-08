@@ -57,14 +57,14 @@ class Primitive
 		virtual Vector3 normal(Vector3 * point) = 0;
 };
 
-class Triangle : public Primitive
+class sglTriangle : public Primitive
 {
 	public :
 		Vector3 point1, point2, point3;
 		Vector3 edge1, edge2;
 		Vector3 normalVector;
 	public :
-		Triangle(Vector3 n_point1, Vector3 n_point2, Vector3 n_point3, Material * n_material) : Primitive(n_material), point1(n_point1), point2(n_point2), point3(n_point3)
+		sglTriangle(Vector3 n_point1, Vector3 n_point2, Vector3 n_point3, Material * n_material) : Primitive(n_material), point1(n_point1), point2(n_point2), point3(n_point3)
 		{
 			edge1 = point2 - point1;
 			edge2 = point3 - point1;
@@ -203,11 +203,11 @@ class AreaLight : public Light
 {
 	private :
 		EmissiveMaterial * material;
-		Triangle * triangle;
+		sglTriangle * triangle;
 		float area;
 		Ray shadow;
 	public :
-		AreaLight(Triangle * n_triangle, EmissiveMaterial * n_material) : Light(Color(), Vector3(), 64), material(n_material), triangle(n_triangle)
+		AreaLight(sglTriangle * n_triangle, EmissiveMaterial * n_material) : Light(Color(), Vector3(), 64), material(n_material), triangle(n_triangle)
 		{
 			Vector3 cross = CrossProd(triangle->edge1, triangle->edge2);
 			area = cross.Length() / 2;

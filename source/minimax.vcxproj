@@ -156,6 +156,7 @@
     <ClCompile Include="release\moc_RayRenderer.cpp" />
     <ClCompile Include="RendererWidget.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="sgl.cpp" />
     <ClCompile Include="Trackball.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="common.cpp" />
@@ -208,6 +209,10 @@
     <ClInclude Include="mmColor.h" />
     <ClInclude Include="mmRay.h" />
     <ClInclude Include="mmVector3.h" />
+    <ClInclude Include="sgl.h" />
+    <ClInclude Include="sglcontext.h" />
+    <ClInclude Include="sglprimitive.h" />
+    <ClInclude Include="sglStructures.h" />
     <ClInclude Include="Triangle.h" />
     <CustomBuild Include="RayRenderer.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\4.8.4\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I"..\..\..\Qt\4.8.4\include\QtCore" -I"..\..\..\Qt\4.8.4\include\QtGui" -I"..\..\..\Qt\4.8.4\include\QtOpenGL" -I"..\..\..\Qt\4.8.4\include" -I"support\Zlib\include" -I"..\..\..\Qt\4.8.4\include\ActiveQt" -I"release" -I..\..\..\Qt\4.8.4\mkspecs\default -D_MSC_VER=1600 -DWIN32 RayRenderer.h -o release\moc_RayRenderer.cpp</Command>

@@ -127,14 +127,14 @@ class SglContext {
 				switch(vertexesSize)
 				{
 					case 4 :
-						primitive.push_back(new Triangle(vertexes[2], vertexes[3], vertexes[0], material[material.size() - 1]));
+						primitive.push_back(new sglTriangle(vertexes[2], vertexes[3], vertexes[0], material[material.size() - 1]));
 						// neni break schvalne
 					case 3 :
-						primitive.push_back(new Triangle(vertexes[0], vertexes[1], vertexes[2], material[material.size() - 1]));
+						primitive.push_back(new sglTriangle(vertexes[0], vertexes[1], vertexes[2], material[material.size() - 1]));
 						break;
 				}
 			} else {
-				light.push_back(new AreaLight(new Triangle(vertexes[0], vertexes[1], vertexes[2], material[material.size() - 1]), emissiveMaterial[emissiveMaterial.size() - 1]));
+				light.push_back(new AreaLight(new sglTriangle(vertexes[0], vertexes[1], vertexes[2], material[material.size() - 1]), emissiveMaterial[emissiveMaterial.size() - 1]));
 			}
 		}
 

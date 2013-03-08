@@ -93,6 +93,9 @@
     <ClCompile Include="mmRay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sgl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="BasicRenderer.h">
@@ -144,6 +147,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Triangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sgl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sglcontext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sglprimitive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sglStructures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
