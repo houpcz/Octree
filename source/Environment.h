@@ -18,7 +18,7 @@
 #include "common.h"
 
 // Forward declarations
-class Vector3;
+class mmVector3;
 
 /// Enumeration type used to distinguish the type of the environment variable
 enum EOptType {
@@ -166,7 +166,7 @@ private:
   bool
   ParseBool(const char *name) const;
   void
-  ParseVector(const char *name, Vector3 &v) const;
+  ParseVector(const char *name, mmVector3 &v) const;
 
 
 public:
@@ -300,7 +300,7 @@ public:
   
   /// returns named option as a 3D vector.
   bool GetVectorValue(const char *name,
-		      Vector3 &v,
+		      mmVector3 &v,
 		      const bool isFatal = false) const;
 
   /// returns named option as a character string.
@@ -327,7 +327,7 @@ public:
   void SetBool(const char *name, const bool value);
   /// sets named option as a 3D vector.
   void SetVector(const char *name,
-		 const Vector3 &v);
+		 const mmVector3 &v);
   /// sets named option as a character string.
   void SetString(const char *name, const char *value);
   //@}

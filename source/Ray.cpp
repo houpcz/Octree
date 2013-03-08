@@ -4,13 +4,13 @@
 // local headers
 #include "Ray.h"
 
-Vector3
+mmVector3
 Ray::ComputeInvertedDir() const
 {
   const float eps = 1e-6f;
   const float invEps = 1e6f;
 
-  Vector3 invDirection;
+  mmVector3 invDirection;
   
   // it does change the ray direction very slightly,
   // but the size direction vector is not practically changed  

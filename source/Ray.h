@@ -5,7 +5,7 @@
 #ifndef __RAY_H
 #define __RAY_H
 
-#include "Vector3.h"
+#include "mmVector3.h"
 #include <vector>
 using namespace std;
 
@@ -17,10 +17,10 @@ struct Ray
 {
 public:
   // origin of the ray
-  Vector3 origin;
+  mmVector3 origin;
 
   // normalized direction
-  Vector3 direction;
+  mmVector3 direction;
 
   // computed intersection point along the ray
   float t;
@@ -35,7 +35,7 @@ public:
     t = MAX_FLOAT;
   }
   
-  Vector3 ComputeInvertedDir() const;  
+  mmVector3 ComputeInvertedDir() const;  
 };
 
 class RayContainer : public vector<Ray>

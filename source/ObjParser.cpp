@@ -15,7 +15,7 @@ using namespace std;
 #include "ObjParser.h"
 #include "Triangle.h"
 
-typedef vector<Vector3> VertexContainer;
+typedef vector<mmVector3> VertexContainer;
 typedef vector<int> VertexIndexContainer;
 
 bool
@@ -107,7 +107,7 @@ ObjParser::ParseFile(const string filename,
 		default:
 		  float x, y, z; //cout << "v";	
 		  sscanf(str + 1, "%f %f %f", &x, &y, &z);
-		  vertices.push_back(Vector3(x,y,z));
+		  vertices.push_back(mmVector3(x,y,z));
 		  //cout << "vertex: " << vertices.back() << endl;
 		}
 		break;

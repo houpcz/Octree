@@ -19,7 +19,7 @@
 #include "gzstream.h"
 #include "common.h"
 #include "Environment.h"
-#include "Vector3.h"
+#include "mmVector3.h"
 
 using namespace std;
   
@@ -456,7 +456,7 @@ Environment::ParseBool(const char *name) const
 }
 
 void
-Environment::ParseVector(const char *name, Vector3 &v) const
+Environment::ParseVector(const char *name, mmVector3 &v) const
 {
   // option was not read, so use the default
   char *s, *t;
@@ -487,7 +487,7 @@ Environment::GetBoolValue(const char *name,
 
 bool
 Environment::GetVectorValue(const char *name,
-			    Vector3 &v,
+			    mmVector3 &v,
 			    const bool isFatal) const
 {
   int i = FindOption(name, isFatal);
@@ -601,7 +601,7 @@ Environment::SetBool(const char *name, const bool value)
 
 void
 Environment::SetVector(const char *name,
-		       const Vector3 &v)
+		       const mmVector3 &v)
 {
   int i = FindOption(name);
   if (i<0)

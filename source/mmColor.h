@@ -2,8 +2,8 @@
 // $Id: Color.h,v 1.2 2007/02/28 16:45:42 bittner Exp $
 // This file has been written by Jiri Bittner, October 2006
 
-#ifndef __COLOR_H
-#define __COLOR_H
+#ifndef __MMCOLOR_H
+#define __MMCOLOR_H
 
 #include <vector>
 using namespace std;

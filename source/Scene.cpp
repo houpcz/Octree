@@ -122,7 +122,7 @@ Scene::Normalize()
 {
   TriangleContainer::iterator ti = triangles.begin();
   // translates all triangles so that the bbox is symetric
-  Vector3 translation = -box.Center();
+  mmVector3 translation = -box.Center();
 
   for (; ti != triangles.end(); ti++) {
     (*ti)->vertices[0] += translation;

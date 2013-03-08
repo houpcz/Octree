@@ -10,7 +10,7 @@
 using namespace std;
 
 #include "mmColor.h"
-#include "Vector3.h"
+#include "mmVector3.h"
 #include "AxisAlignedBox3.h"
 #include "common.h"
 
@@ -22,14 +22,14 @@ class Ray;
 struct Triangle
 {
   unsigned short boundingBoxIndices;
-  Vector3 vertices[3];
+  mmVector3 vertices[3];
   mmColor color;
   
   Triangle() {}
   
-  Triangle(const Vector3 &a, 
-		   const Vector3 &b,
-		   const Vector3 &c) {
+  Triangle(const mmVector3 &a, 
+		   const mmVector3 &b,
+		   const mmVector3 &c) {
     vertices[0] = a;
     vertices[1] = b;
     vertices[2] = c;
@@ -61,12 +61,12 @@ struct Triangle
 	//	cout<<boundingBoxIndices<<endl;
   }
   
-  Vector3 GetMin() const {
-    return Vector3(GetMin(0), GetMin(1), GetMin(2));
+  mmVector3 GetMin() const {
+    return mmVector3(GetMin(0), GetMin(1), GetMin(2));
   }
 
-  Vector3 GetMax() const {
-    return Vector3(GetMax(0), GetMax(1), GetMax(2));
+  mmVector3 GetMax() const {
+    return mmVector3(GetMax(0), GetMax(1), GetMax(2));
   }
   
   float GetMin(const int axis) const {

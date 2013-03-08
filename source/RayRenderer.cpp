@@ -32,7 +32,7 @@ RayRenderer::RayRenderer(Scene *s)
 void
 RayRenderer::RenderTriangle(const Triangle &t)
 {
-  Vector3 normal = CrossProd(t.vertices[2] - t.vertices[0], t.vertices[1] - t.vertices[0]);
+  mmVector3 normal = CrossProd(t.vertices[2] - t.vertices[0], t.vertices[1] - t.vertices[0]);
   glNormal3f(normal.x, normal.y, normal.z);
   glVertex3f(t.vertices[0].x, t.vertices[0].y, t.vertices[0].z);
   glVertex3f(t.vertices[1].x, t.vertices[1].y, t.vertices[1].z);
@@ -128,7 +128,7 @@ RayRenderer::RenderScene()
   float scale = 1.0f/scene->box.Diagonal().Size();
   glScalef(scale, scale, scale);
 
-  Vector3 translation = -scene->box.Center();
+  mmVector3 translation = -scene->box.Center();
   glTranslatef(translation.x, translation.y, translation.z);
 
   // Render the whole scene
