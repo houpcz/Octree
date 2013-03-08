@@ -1,0 +1,14 @@
+BACKUPPATH = backup
+PROGRAM = minimax
+
+TOBACKUP = *.cpp *.h *.pro  Makefile makefile.common default.env data/teapot.obj -r support/*
+
+zip:
+	zip -9  $(BACKUPPATH)/$(PROGRAM)_src_`date +%d.%b-%H.%M`.zip $(TOBACKUP)
+
+.PHONY: release
+
+release: 
+	cp release/minimax.exe dll/
+	cd dll ;\
+	zip -D ../$(BACKUPPATH)/$(PROGRAM)_release_`date +%d.%b-%H.%M`.zip *
