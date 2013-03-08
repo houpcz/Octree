@@ -10,6 +10,7 @@
 #include "BasicRenderer.h"
 #include "GvsPreprocessor.h"
 #include "ObjParser.h"
+#include "MainWindow.h" 
 
 // If true assumes that the environment file is in the same directory as the
 // the executable. Otherwise uses current directory
@@ -68,8 +69,8 @@ main(int argc, char **argv)
   // now do the Qt stuff
   if (1) {
 	QApplication app(argc, argv);
-	BasicRenderer renderer(scene);
-	renderer.show();
+	MainWindow window(scene);
+	window.show();
 	return app.exec(); // endless loop started
   }
   return 0;

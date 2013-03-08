@@ -1,7 +1,7 @@
 #include <stack>
 #include <queue>
 #include "Scene.h"
-#include "BasicRenderer.h"
+#include "RayRenderer.h"
 #include <QSlider>
 #include <QTimer>
 
@@ -10,10 +10,10 @@
 // GL_TRIANGLES object!
 
 // Constructor
-BasicRenderer::BasicRenderer(Scene *s)
+RayRenderer::RayRenderer(Scene *s)
   : scene(s)
 {
-  
+   
   trianglesPerCall = 1000;
   QSlider *slider = new QSlider(Qt::Horizontal, NULL);
   //  vl->addWidget(slider);
@@ -30,10 +30,10 @@ BasicRenderer::BasicRenderer(Scene *s)
 }
 
 void
-BasicRenderer::RenderTriangle(const Triangle &t)
+RayRenderer::RenderTriangle(const Triangle &t)
 {
-  //  Vector3 normal = CrossProd(t.vertices[2] - t.vertices[0], t.vertices[1] - t.vertices[0]);
-  //  glNormal3f(normal.x, normal.y, normal.z);
+  Vector3 normal = CrossProd(t.vertices[2] - t.vertices[0], t.vertices[1] - t.vertices[0]);
+  glNormal3f(normal.x, normal.y, normal.z);
   glVertex3f(t.vertices[0].x, t.vertices[0].y, t.vertices[0].z);
   glVertex3f(t.vertices[1].x, t.vertices[1].y, t.vertices[1].z);
   glVertex3f(t.vertices[2].x, t.vertices[2].y, t.vertices[2].z);
@@ -42,7 +42,7 @@ BasicRenderer::RenderTriangle(const Triangle &t)
 }
 
 void
-BasicRenderer::initializeGL()
+RayRenderer::initializeGL()
 {
   // just log GL vendor and capabilities
   RendererWidget::initializeGL();
@@ -123,7 +123,7 @@ BasicRenderer::initializeGL()
 
 
 void
-BasicRenderer::RenderScene()
+RayRenderer::RenderScene()
 {
   float scale = 1.0f/scene->box.Diagonal().Size();
   glScalef(scale, scale, scale);
@@ -148,7 +148,7 @@ BasicRenderer::RenderScene()
   bool wireframe = mWireframe;
   int calls = 0;
 
-  bool useBvh = true;
+  bool useBvh = false;
   
   if (!wireframe) {
 	
@@ -216,7 +216,7 @@ BasicRenderer::RenderScene()
 }
  
 void
-BasicRenderer::RenderBox(const AxisAlignedBox3 &box)
+RayRenderer::RenderBox(const AxisAlignedBox3 &box)
 {
   glBegin(GL_LINE_LOOP);
   glVertex3d(box.min.x, box.max.y, box.min.z );
@@ -265,7 +265,7 @@ BasicRenderer::RenderBox(const AxisAlignedBox3 &box)
 }
 
 void
-BasicRenderer::RenderBvhLeaf(BvhLeaf *leaf)
+RayRenderer::RenderBvhLeaf(BvhLeaf *leaf)
 {
   bool useGlLists = true;
 
@@ -324,7 +324,7 @@ struct BvhTraversalEntry {
 };
 
 void
-BasicRenderer::RenderBvhBoxes()
+RayRenderer::RenderBvhBoxes()
 {
   stack<BvhNode *> nodeStack;
   
@@ -346,7 +346,7 @@ BasicRenderer::RenderBvhBoxes()
 }
 
 void
-BasicRenderer::RenderBvh()
+RayRenderer::RenderBvh()
 {
   priority_queue<BvhTraversalEntry> nodeStack;
 
@@ -368,7 +368,7 @@ BasicRenderer::RenderBvh()
 }
 
 void
-BasicRenderer::SetTrianglesPerCall(int value)
+RayRenderer::SetTrianglesPerCall(int value)
 {
   float exp = (value*1e-3f)*6.0f;
   trianglesPerCall = (int) pow((long double)10.0, (long double)exp);
