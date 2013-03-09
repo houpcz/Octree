@@ -19,7 +19,7 @@ public:
   
   AxisAlignedBox3(const mmVector3 &nMin, const mmVector3 &nMax, bool enlarge = false)
   {
-	//float eps = 1e-2f;
+	//float eps = 1e-4f;
     min = nMin; max = nMax;
 	/*
 	if(enlarge)

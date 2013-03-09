@@ -147,8 +147,15 @@ void SglContext::makeOctree()
 bool SglContext::lightObstacle(Ray * r, Vector3 *lightPos)
 {
 	float t;
-	for(int loop3 = primitive.size() - 1; loop3 >= 0; loop3--)
+
+	set<int> triangles = octree->GetCrossedTriangles(*r);
+	set<int>::iterator it;
+
+	// najde prusecik s nejblizsim primitivem
+	for(it = triangles.begin(); it != triangles.end(); ++it)
 	{
+		int loop3 = *it;
+
 		// je bod na telese zastinen nejakym jinym telesem od svetla?
 		if(primitive[loop3]->intersect(*r, &t))
 		{
@@ -347,7 +354,8 @@ void SglContext::raytrace()
 	
 	for(int loop1 = 0; loop1 < viewportHeight; loop1++)
 	{
-		cout << "Row number " << loop1 + 1 << endl;
+		if(loop1 % 10 == 0)
+			cout << "Row number " << loop1 + 1 << endl;
 		for(int loop2 = 0; loop2 < viewportWidth; loop2++)
 		{
 
