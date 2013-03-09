@@ -118,7 +118,7 @@ RayRenderer::RayRenderer(Scene *s)
 			  1.0f);
 
   TriangleContainer::const_iterator ti = scene->triangles.begin();
-  for(int loop1 = 0; ti != scene->triangles.end() && loop1 < 10000; ++ti, loop1++)
+  for(int loop1 = 0; ti != scene->triangles.end(); ++ti, loop1++)
   {
 	  sglBegin(SGL_POLYGON);
 	  for(int i=0; i<3; i++)
