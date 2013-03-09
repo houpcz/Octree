@@ -1,7 +1,7 @@
 #include "Octree.h"
 
 
-Octree::Octree(vector<Primitive *> & _primitive)
+Octree::Octree(vector<Primitive *> & _primitive) 
 {
 	vector<int> allIDs;
 	AxisAlignedBox3 box;
