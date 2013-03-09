@@ -69,8 +69,8 @@ void sgluPerspective( float fovy, float aspect, float zNear, float zFar )
 RayRenderer::RayRenderer(Scene *s)
   : scene(s)
 {
-  contextWidth = 640;
-  contextHeight = 640;
+  contextWidth = 600;
+  contextHeight = 600;
   contextID = sglCreateContext(contextWidth, contextHeight);
   sglSetContext(contextID);
 
@@ -95,16 +95,21 @@ RayRenderer::RayRenderer(Scene *s)
   sglBeginScene();
   
   float intensity = 0.7;
-  sglPointLight(1.0, 5.8, 1.0,
+
+  float centerY = scene->box.Center().y;
+  float centerX = scene->box.Center().x;
+  float centerZ = scene->box.Center().z;
+  sglPointLight(centerX, scene->box.max.y + 1.5f, centerZ,
 				intensity, intensity, intensity);
 
-  sglPointLight(5.0, 5.8, 1.0,
+  sglPointLight(centerX, scene->box.min.y - 1.5f, centerZ,
 				intensity, intensity, intensity);
-  sglPointLight(1.0, -5.8, 5.0,
+
+  sglPointLight(centerX, centerY, scene->box.max.z + 2.5,
 				intensity, intensity, intensity);
 
   sglMaterial(0.8f,
-			  0.20f,
+			  0.6f,
 			  0.8f,
 			  1.0f,
 			  0.0f,
@@ -113,13 +118,32 @@ RayRenderer::RayRenderer(Scene *s)
 			  1.0f);
 
   TriangleContainer::const_iterator ti = scene->triangles.begin();
-  for(int loop1 = 0; ti != scene->triangles.end(); ++ti, loop1++)
+  for(int loop1 = 0; ti != scene->triangles.end() && loop1 < 10000; ++ti, loop1++)
   {
 	  sglBegin(SGL_POLYGON);
 	  for(int i=0; i<3; i++)
 		sglVertex3f((**ti).vertices[i].x,(**ti).vertices[i].y,(**ti).vertices[i].z);
 	  sglEnd();
   }
+
+  sglMakeOctree();
+
+  cout << "Octree made." << endl;
+  /*
+  sglEmissiveMaterial(1.0,
+					  1.0,
+					  1.0,
+					  2.0,
+					  3.2,
+					  5.0);
+						
+	sglBegin(SGL_POLYGON);
+	sglVertex3f(scene->box.min.x, scene->box.max.y + 0.5, scene->box.min.z);
+	sglVertex3f(scene->box.max.x, scene->box.max.y + 0.5, scene->box.min.z);
+	sglVertex3f(scene->box.max.x, scene->box.max.y + 0.5, scene->box.max.z);
+	sglVertex3f(scene->box.min.x, scene->box.max.y + 0.5, scene->box.max.z);
+	sglEnd();
+  */
 
   sglEndScene();
   /// END SCENE DEFINITION
@@ -190,77 +214,6 @@ RayRenderer::initializeGL()
 {
   // just log GL vendor and capabilities
   RendererWidget::initializeGL();
-
-  if (1) {
-    GLfloat mat_ambient[] = {  0.5, 0.5, 0.5, 1.0  };
-    GLfloat mat_diffuse[] = {  1.0, 1.0, 1.0, 1.0  };
-	
-    GLfloat light_ambient[] = {  0.2, 0.2, 0.2, 1.0  };
-    GLfloat light_diffuse[] = {  0.4, 0.4, 0.4, 1.0  };
-    GLfloat lmodel_ambient[] = {  0.3, 0.3, 0.3, 1.0  };
-	
-    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
-    glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-	
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
-    
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    
-    // set position of the light
-    GLfloat infinite_light[] = {  1.0, 0.8, 1.0, 0.0  };
-    glLightfv (GL_LIGHT0, GL_POSITION, infinite_light);
-    
-    glColorMaterial( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    //   glColorMaterial( GL_FRONT_AND_BACK, GL_SPECULAR);
-    glEnable(GL_COLOR_MATERIAL);
-  }
-  
-  qglClearColor(QColor(0,0,128));
-  glShadeModel(GL_FLAT);
-  glEnable(GL_DEPTH_TEST);
-
-  glDisable(GL_CULL_FACE);
-  glCullFace(GL_BACK);
-  glFrontFace(GL_CCW);
-
-  glShadeModel( GL_FLAT );
-  //glEnable(GL_AUTO_NORMAL);
-  glDepthFunc( GL_LESS );
-  glEnable( GL_DEPTH_TEST );
-
-  glDisable(GL_LIGHTING);
-
-  // glEnable( GL_NORMALIZE );
-
-
-  textures.resize(2);
-
-  // generate two dummy textures
-  for (int i=0; i < textures.size(); i++) {
-    glGenTextures(1, &textures[i]);
-    glBindTexture(GL_TEXTURE_2D, textures[i]);
-    int width = 512;
-    int height = 512;
-    
-    unsigned char *buffer = new unsigned char[width*height*3];
-    // generate a texture
-    glTexImage2D(GL_TEXTURE_2D,
-				 0,
-				 3,
-				 width,
-				 height,
-				 0,
-				 GL_RGB,
-				 GL_UNSIGNED_BYTE,
-				 buffer
-				 );
-    delete buffer;
-  }
-  
-  glEnable(GL_TEXTURE_2D);
 
   return;
 }

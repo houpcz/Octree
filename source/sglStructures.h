@@ -80,6 +80,10 @@ struct Vector3 {
 	{
 		return Vector3(x + B.x, y + B.y, z + B.z);
 	}
+	inline Vector3 operator/(const Vector3& B) const
+	{
+		return Vector3(x / B.x, y / B.y, z / B.z);
+	}
 	inline Vector3 operator/(const float k) const
 	{
 		return Vector3(x / k, y / k, z / k);

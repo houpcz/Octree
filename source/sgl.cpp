@@ -71,6 +71,7 @@ SglContext::SglContext(int n_width, int n_height, int ID)
 	vertexesSize = 0;
 	vertexes = new Vector4[vertexesMax];
 
+	octree = NULL;
 	sglBeginScene = false;
 
 	mapColors = NULL;
@@ -83,6 +84,12 @@ void  SglContext::clearScene()
 	for(unsigned int loop1 = 0; loop1 < primitive.size(); loop1++)
 		delete primitive[loop1];
 	primitive.clear();
+
+	if(octree != NULL)
+	{
+		delete octree;
+		octree = NULL;
+	}
 
 	for(unsigned int loop1 = 0; loop1 < light.size(); loop1++)
 		delete light[loop1];
@@ -110,6 +117,8 @@ SglContext::~SglContext()
 	}
 
 	clearScene();
+	if(octree != NULL)
+		delete octree;
 }
 
 // Vytvori paprsek odpovidajici jednomu bodu na obrazovce
@@ -128,6 +137,11 @@ Ray SglContext::makeRay(float x, float y, float * matrixInvert)
 	ray.direction.Normalize();
 
 	return ray;
+}
+
+void SglContext::makeOctree()
+{
+	octree = new Octree(primitive);
 }
 
 bool SglContext::lightObstacle(Ray * r, Vector3 *lightPos)
@@ -151,6 +165,33 @@ bool SglContext::lightObstacle(Ray * r, Vector3 *lightPos)
 	return false;
 }
 
+Primitive * SglContext::FindNearestHittedPrimitive(Ray & ray, float & tHit)
+{
+	set<int> triangles = octree->GetCrossedTriangles(ray);
+
+	float bestHit = 999999.0f; // prusecik musi byt blize nez tato konstanta, jinak se nezapocita
+	Primitive * bestPrimitive = NULL;
+	int bestID = -1;
+
+	set<int>::iterator it;
+
+	// najde prusecik s nejblizsim primitivem
+	//for(int loop1 = 0; loop1 < primitive.size(); loop1++)
+	for(it = triangles.begin(); it != triangles.end(); ++it)
+	{
+		int loop1 = *it;
+		if(primitive[loop1]->intersect(ray, &tHit) && tHit < bestHit)
+		{
+			bestPrimitive = primitive[loop1];
+			bestID = loop1;
+			bestHit = tHit;					
+		}
+	}
+	tHit = bestHit;
+
+	return bestPrimitive;
+}
+
 Color SglContext::traceRay(Ray ray, int depth)
 {
 	Color result;
@@ -159,30 +200,17 @@ Color SglContext::traceRay(Ray ray, int depth)
 	float r, g, b;			/// barevne slozky pixelu, do kterych se nascitavaji svetla
 	Vector3 L, N, R, V;		/// vektor ke svetlu, normala povrchu v bode bestPoint, vektor odrazu svetla, od bestPoint k pozorovateli
 	Vector3 bestPoint;		/// prusecik paprsku a telesa
-	float bestHit = 999999.0f; // prusecik musi byt blize nez tato konstanta, jinak se nezapocita
 	float tHit;
 
-	int bestID = 1000;
-
-	// najde prusecik s nejblizsim primitivem
-	for(int loop1 = 0; loop1 < primitive.size(); loop1++)
-	{
-		if(primitive[loop1]->intersect(ray, &tHit) && tHit < bestHit)
-		{
-			bestPrimitive = primitive[loop1];
-			bestID = loop1;
-			bestHit = tHit;					
-		}
-	}
-
+	bestPrimitive = FindNearestHittedPrimitive(ray, tHit);
 	// byl-li zasah (dostatecne blizko)
-	if(bestHit < 99000.0f)
+	if(bestPrimitive != NULL)
 	{
 		Ray shadowRay;
 		bool wasObstacle;
 
 		r = g = b = 0.0f;
-		bestPoint = ray.origin + ray.direction * bestHit;
+		bestPoint = ray.origin + ray.direction * tHit;
 		bestMaterial = bestPrimitive->material;
 
 		// normalovy vektor dle primitiva v bode bestPoint
@@ -314,7 +342,7 @@ void SglContext::raytrace()
 	int primitiveSize = primitive.size();
 
 	
-	for(int loop1 = 200; loop1 < viewportHeight - 200; loop1++)
+	for(int loop1 = 0; loop1 < viewportHeight; loop1++)
 	{
 		cout << "Row number " << loop1 + 1 << endl;
 		for(int loop2 = 0; loop2 < viewportWidth; loop2++)
@@ -1755,6 +1783,11 @@ void sglRayTraceScene()
 
 	ContextManager::Inst()->CC()->raytrace();
 	//sglRasterizeScene();
+}
+
+void sglMakeOctree()
+{
+	ContextManager::Inst()->CC()->makeOctree();
 }
 
 void sglRasterizeScene() {

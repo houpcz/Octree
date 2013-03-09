@@ -96,6 +96,12 @@
     <ClCompile Include="sgl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Octree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OctNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="BasicRenderer.h">
@@ -163,6 +169,15 @@
     </ClInclude>
     <ClInclude Include="Triangle.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Octree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OctNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aabb_triangle.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

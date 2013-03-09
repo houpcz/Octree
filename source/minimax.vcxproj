@@ -42,9 +42,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    </OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">minimax</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">RayTracer</TargetName>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\</OutDir>
@@ -80,7 +81,7 @@
       <IgnoreImportLibrary>true</IgnoreImportLibrary>
       <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <LinkIncremental>false</LinkIncremental>
-      <OutputFile>$(OutDir)\minimax.exe</OutputFile>
+      <OutputFile>RayTracer.exe</OutputFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Link>
@@ -148,6 +149,8 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="mmRay.cpp" />
     <ClCompile Include="ObjParser.cpp" />
+    <ClCompile Include="OctNode.cpp" />
+    <ClCompile Include="Octree.cpp" />
     <ClCompile Include="RayRenderer.cpp">
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\4.8.4\bin\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)moc_%(Filename).cpp"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Compiling %(Filename).%(Extension) using MOC</Message>
@@ -203,12 +206,15 @@
     <None Include="default.env" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aabb_triangle.h" />
     <ClInclude Include="BvhRayCaster.h" />
     <ClInclude Include="CentralWidget.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="mmColor.h" />
     <ClInclude Include="mmRay.h" />
     <ClInclude Include="mmVector3.h" />
+    <ClInclude Include="OctNode.h" />
+    <ClInclude Include="Octree.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="sgl.h" />
     <ClInclude Include="sglcontext.h" />

@@ -694,7 +694,7 @@ void sglPointLight(const float x,
 				   const float g,
 				   const float b);
 
-
+void sglMakeOctree();
 
 /// Compute an image using ray tracing
 /** 

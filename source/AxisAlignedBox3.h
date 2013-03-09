@@ -6,7 +6,9 @@
 #define _AxisAlignedBox3_H__
 
 #include "mmVector3.h"
+#include "sglprimitive.h"
 class mmRay;
+class Ray;
 
 class AxisAlignedBox3
 {
@@ -20,9 +22,38 @@ public:
     min = nMin; max = nMax;
   }
 
+  AxisAlignedBox3 GetOctant(int octantID)
+  {
+	  mmVector3 center = Center();
+
+	  switch(octantID)
+	  {
+		case 0 :
+			return AxisAlignedBox3(mmVector3(min.x, min.y, min.z), mmVector3(center.x, center.y, center.z));
+		case 1 :
+			return AxisAlignedBox3(mmVector3(center.x, min.y, min.z), mmVector3(max.x, center.y, center.z));
+		case 2 :
+			return AxisAlignedBox3(mmVector3(min.x, center.y, min.z), mmVector3(center.x, max.y, center.z));
+		case 3 :
+			return AxisAlignedBox3(mmVector3(center.x, center.y, min.z), mmVector3(max.x, max.y, center.z));
+		case 4 :
+			return AxisAlignedBox3(mmVector3(min.x, min.y, center.z), mmVector3(center.x, center.y, max.z));
+		case 5 :
+			return AxisAlignedBox3(mmVector3(center.x, min.y, center.z), mmVector3(max.x, center.y, max.z));
+		case 6 :
+			return AxisAlignedBox3(mmVector3(min.x, center.y, center.z), mmVector3(center.x, max.y, max.z));
+		case 7 :
+			return AxisAlignedBox3(mmVector3(center.x, center.y, center.z), mmVector3(max.x, max.y, max.z));
+	  }
+  }
+
   void Reset() {
     min = mmVector3(MAX_FLOAT, MAX_FLOAT, MAX_FLOAT);
     max = mmVector3(MIN_FLOAT, MIN_FLOAT, MIN_FLOAT);
+  }
+
+  void Include(const Vector3 &v) {
+	  Include(mmVector3(v.x, v.y, v.z));
   }
 
   void Include(const mmVector3 &v) {
@@ -77,7 +108,13 @@ public:
   ComputeMinMaxT(const mmRay &ray,
 		 float &tmin,
 		 float &tmax) const;
+
+  bool
+  ComputeMinMaxT(const Ray &ray,
+		 float &tmin,
+		 float &tmax) const;
   
+  bool CollisionTriangle(sglTriangle * triangle);
 	
   friend inline AxisAlignedBox3 Union(const AxisAlignedBox3 &x,
 									  const AxisAlignedBox3 &y);

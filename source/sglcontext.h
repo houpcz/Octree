@@ -10,6 +10,7 @@
 
 #include "sglprimitive.h"
 #include "sgl.h"
+#include "Octree.h"
 #include <vector>
 #include <stack>
 
@@ -64,12 +65,15 @@ class SglContext {
 		vector<EmissiveMaterial *> emissiveMaterial;
 		vector<Primitive *> primitive;
 		vector<Light *> light;
+		Octree * octree;
 
 		// Environment map
 		int mapWidth;
 		int mapHeight;
 		float * mapColors;
 	private :
+		Primitive * FindNearestHittedPrimitive(Ray & ray, float & tHit);
+
 		// Kresli usecky bez kontroly indexu do colorBufferu
 		void DrawLineFaster(float fx1, float fy1, float fx2, float fy2);
 		// Pomalejsi, kontroluje, jestli jednotlive body jsou uvnitr viewportu
@@ -102,6 +106,7 @@ class SglContext {
 		void DrawLineLoop();
 
 		// -- Raytracing --
+		void makeOctree();
 		// Procisti scenu
 		void clearScene();
 		// vyrenderuje nactenou scenu
