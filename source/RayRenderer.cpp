@@ -151,7 +151,7 @@ RayRenderer::RayRenderer(Scene *s)
 
   sglAreaMode(SGL_FILL);
   sglEnable(SGL_DEPTH_TEST);
-  sglClearColor(0, 0, 0, 1);
+  sglClearColor(0, 0.5f, 0, 1);
   sglClear(SGL_COLOR_BUFFER_BIT|SGL_DEPTH_BUFFER_BIT);
 
   // set the viewport transform

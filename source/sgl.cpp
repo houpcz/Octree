@@ -180,11 +180,14 @@ Primitive * SglContext::FindNearestHittedPrimitive(Ray & ray, float & tHit)
 	for(it = triangles.begin(); it != triangles.end(); ++it)
 	{
 		int loop1 = *it;
-		if(primitive[loop1]->intersect(ray, &tHit) && tHit < bestHit)
+		if(primitive[loop1]->intersect(ray, &tHit))
 		{
-			bestPrimitive = primitive[loop1];
-			bestID = loop1;
-			bestHit = tHit;					
+			if(tHit < bestHit)
+			{
+				bestPrimitive = primitive[loop1];
+				bestID = loop1;
+				bestHit = tHit;	
+			}
 		}
 	}
 	tHit = bestHit;

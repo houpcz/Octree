@@ -36,6 +36,14 @@ bool Octree::CheckOctree()
 	for(int loop1 = 0; loop1 < leaf.size(); loop1++)
 	{
 		ids = leaf[loop1]->PrimitiveID();
+		for(int loop2 = 0; loop2 < ids.size(); loop2++)
+		{
+			if(ids[loop2] == 1316)
+			{
+				bool hit = leaf[loop1]->Box().CollisionTriangle(primitive[1316]);
+				break;
+			}
+		}
 		triangle.insert(ids.begin(), ids.end());
 	}
 

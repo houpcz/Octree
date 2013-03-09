@@ -21,10 +21,11 @@ public:
 	set<int> GetCrossedTriangles(Ray & ray);
 
 	sglTriangle * GetTriangle(int triangleID);
-	int MaxPrimitive() { return 150; };
-	float MinVolume() { return 0.01f; };
+	int MaxPrimitive() { return 4; };
+	float MinVolume() { return 0.1f; };
 	void AddLeaf(OctNode * node);
 	bool CheckOctree();
+	OctNode * GetLeaf(int leafID) { return leaf[leafID]; };
 };
 
 #endif

@@ -17,9 +17,17 @@ public:
   // Constructors.
   AxisAlignedBox3() { }
   
-  AxisAlignedBox3(const mmVector3 &nMin, const mmVector3 &nMax)
+  AxisAlignedBox3(const mmVector3 &nMin, const mmVector3 &nMax, bool enlarge = false)
   {
+	//float eps = 1e-2f;
     min = nMin; max = nMax;
+	/*
+	if(enlarge)
+	{
+		min = min - mmVector3(eps, eps, eps);
+		max = max + mmVector3(eps, eps, eps);
+	}
+	*/
   }
 
   AxisAlignedBox3 GetOctant(int octantID)
@@ -29,21 +37,21 @@ public:
 	  switch(octantID)
 	  {
 		case 0 :
-			return AxisAlignedBox3(mmVector3(min.x, min.y, min.z), mmVector3(center.x, center.y, center.z));
+			return AxisAlignedBox3(mmVector3(min.x, min.y, min.z), mmVector3(center.x, center.y, center.z), true);
 		case 1 :
-			return AxisAlignedBox3(mmVector3(center.x, min.y, min.z), mmVector3(max.x, center.y, center.z));
+			return AxisAlignedBox3(mmVector3(center.x, min.y, min.z), mmVector3(max.x, center.y, center.z), true);
 		case 2 :
-			return AxisAlignedBox3(mmVector3(min.x, center.y, min.z), mmVector3(center.x, max.y, center.z));
+			return AxisAlignedBox3(mmVector3(min.x, center.y, min.z), mmVector3(center.x, max.y, center.z), true);
 		case 3 :
-			return AxisAlignedBox3(mmVector3(center.x, center.y, min.z), mmVector3(max.x, max.y, center.z));
+			return AxisAlignedBox3(mmVector3(center.x, center.y, min.z), mmVector3(max.x, max.y, center.z), true);
 		case 4 :
-			return AxisAlignedBox3(mmVector3(min.x, min.y, center.z), mmVector3(center.x, center.y, max.z));
+			return AxisAlignedBox3(mmVector3(min.x, min.y, center.z), mmVector3(center.x, center.y, max.z), true);
 		case 5 :
-			return AxisAlignedBox3(mmVector3(center.x, min.y, center.z), mmVector3(max.x, center.y, max.z));
+			return AxisAlignedBox3(mmVector3(center.x, min.y, center.z), mmVector3(max.x, center.y, max.z), true);
 		case 6 :
-			return AxisAlignedBox3(mmVector3(min.x, center.y, center.z), mmVector3(center.x, max.y, max.z));
+			return AxisAlignedBox3(mmVector3(min.x, center.y, center.z), mmVector3(center.x, max.y, max.z), true);
 		case 7 :
-			return AxisAlignedBox3(mmVector3(center.x, center.y, center.z), mmVector3(max.x, max.y, max.z));
+			return AxisAlignedBox3(mmVector3(center.x, center.y, center.z), mmVector3(max.x, max.y, max.z), true);
 	  }
   }
 

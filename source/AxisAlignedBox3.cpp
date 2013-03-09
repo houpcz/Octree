@@ -11,11 +11,12 @@ bool AxisAlignedBox3::CollisionTriangle(sglTriangle * triangle)
 	mmVector3 center = Center();
 	mmVector3 diagonal = Diagonal();
 
+	const float eps = 1.03;
 	float boxcenter[3] = {center.x, center.y, center.z};
-	float boxhalfsize[3] = {diagonal.x / 2.0f, diagonal.y / 2.0f, diagonal.z / 2.0f};
+	float boxhalfsize[3] = {diagonal.x / 2.0f * eps, diagonal.y / 2.0f * eps, diagonal.z / 2.0f * eps};
 	float triverts[3][3] = { {triangle->point1.x, triangle->point1.y, triangle->point1.z},
-						   {triangle->point1.x, triangle->point1.y, triangle->point1.z},
-						   {triangle->point1.x, triangle->point1.y, triangle->point1.z}};
+						   {triangle->point2.x, triangle->point2.y, triangle->point2.z},
+						   {triangle->point3.x, triangle->point3.y, triangle->point3.z}};
 
 	return triBoxOverlap(boxcenter, boxhalfsize, triverts);
 }
@@ -121,7 +122,9 @@ AxisAlignedBox3::ComputeMinMaxT(const Ray &ray,
 								float &tmin,
 								float &tmax) const
 {
-  const float dirEps = 1e-8f;
+  tmin = -1.0f;
+  tmax = -1.0f;
+  const float dirEps = 1e-6f;
   register float minx, maxx;
   
   if (fabs(ray.direction.x) < dirEps) {

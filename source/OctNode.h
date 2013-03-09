@@ -28,6 +28,7 @@ public:
 	OctNode(vector<int> parentPrimitive, AxisAlignedBox3 _box, Octree * _tree, OctNode * _parent);
 	set<int> GetCrossedTriangles(Ray & ray);
 	vector<int> PrimitiveID() { return primitiveID; };
+	AxisAlignedBox3 Box() { return box; };
 	~OctNode(void);
 };
 

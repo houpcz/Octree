@@ -1,6 +1,6 @@
 Info: Application started
 Info: scene filename = data/teapot.obj
-Info: scene parsed in 0.005123 seconds
+Info: scene parsed in 0.003761 seconds
 Info: #triangles = 6320
 Info: Scene bounding box (-3, 0, -2):(3.434, 3.15, 2)
 Info: GL Vendor = Intel
