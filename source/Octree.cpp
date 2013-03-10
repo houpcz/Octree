@@ -52,14 +52,14 @@ set<int> Octree::GetCrossedTriangles(Ray & ray)
 {
 	if(faster)
 	{
-		set<int> b = GetCrossedTrianglesSlow(ray);
-		//set<int> a = GetCrossedTrianglesFaster(ray);
+		//set<int> b = GetCrossedTrianglesSlow(ray);
+		set<int> a = GetCrossedTrianglesFaster(ray);
 
 		//if(a.size() != b.size())
 		//{
 		//	int stop = 1;
 		//}
-		return b;
+		return a;
 	}
 	else
 	{
