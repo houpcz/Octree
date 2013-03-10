@@ -14,11 +14,22 @@ private :
 	OctNode * root;
 	vector<sglTriangle *> primitive;
 	vector<OctNode *> leaf;
+
+	set<int> crossedTriangleIDs;
+	int a;
+	bool faster;
 public:
-	Octree(vector<Primitive *> & _primitive);
+	Octree(vector<Primitive *> & _primitive, bool _faster);
 	~Octree(void);
 
 	set<int> GetCrossedTriangles(Ray & ray);
+	set<int> GetCrossedTrianglesSlow(Ray & ray);
+	set<int> GetCrossedTrianglesFaster(Ray & r);
+	void CrossSubTree(float tx0, float ty0, float tz0, float tx1, float ty1, float tz1, OctNode * n);
+	int FirstNode(float tx0, float ty0, float tz0, float txm, float tym, float tzm);
+	int NewNode(float x, int xID, float y, int yID, float z, int zID);
+	float Min(float a, float b, float c);
+	float Max(float a, float b, float c);
 
 	sglTriangle * GetTriangle(int triangleID);
 	int MaxPrimitive() { return 100; };

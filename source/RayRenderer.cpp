@@ -126,7 +126,7 @@ RayRenderer::RayRenderer(Scene *s)
 	  sglEnd();
   }
 
-  sglMakeOctree();
+  sglMakeOctree(true);
 
   cout << "Octree made." << endl;
   /*

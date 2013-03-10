@@ -106,7 +106,7 @@ class SglContext {
 		void DrawLineLoop();
 
 		// -- Raytracing --
-		void makeOctree();
+		void makeOctree(bool faster);
 		// Procisti scenu
 		void clearScene();
 		// vyrenderuje nactenou scenu

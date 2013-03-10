@@ -38,17 +38,17 @@ public:
 	  {
 		case 0 :
 			return AxisAlignedBox3(mmVector3(min.x, min.y, min.z), mmVector3(center.x, center.y, center.z), true);
-		case 1 :
+		case 4 :
 			return AxisAlignedBox3(mmVector3(center.x, min.y, min.z), mmVector3(max.x, center.y, center.z), true);
 		case 2 :
 			return AxisAlignedBox3(mmVector3(min.x, center.y, min.z), mmVector3(center.x, max.y, center.z), true);
-		case 3 :
+		case 6 :
 			return AxisAlignedBox3(mmVector3(center.x, center.y, min.z), mmVector3(max.x, max.y, center.z), true);
-		case 4 :
+		case 1 :
 			return AxisAlignedBox3(mmVector3(min.x, min.y, center.z), mmVector3(center.x, center.y, max.z), true);
 		case 5 :
 			return AxisAlignedBox3(mmVector3(center.x, min.y, center.z), mmVector3(max.x, center.y, max.z), true);
-		case 6 :
+		case 3 :
 			return AxisAlignedBox3(mmVector3(min.x, center.y, center.z), mmVector3(center.x, max.y, max.z), true);
 		case 7 :
 			return AxisAlignedBox3(mmVector3(center.x, center.y, center.z), mmVector3(max.x, max.y, max.z), true);

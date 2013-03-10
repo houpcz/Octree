@@ -139,9 +139,9 @@ Ray SglContext::makeRay(float x, float y, float * matrixInvert)
 	return ray;
 }
 
-void SglContext::makeOctree()
+void SglContext::makeOctree(bool faster)
 {
-	octree = new Octree(primitive);
+	octree = new Octree(primitive, faster);
 }
 
 bool SglContext::lightObstacle(Ray * r, Vector3 *lightPos)
@@ -1796,9 +1796,9 @@ void sglRayTraceScene()
 	//sglRasterizeScene();
 }
 
-void sglMakeOctree()
+void sglMakeOctree(bool faster)
 {
-	ContextManager::Inst()->CC()->makeOctree();
+	ContextManager::Inst()->CC()->makeOctree(faster);
 }
 
 void sglRasterizeScene() {

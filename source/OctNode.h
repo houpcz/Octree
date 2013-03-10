@@ -29,6 +29,10 @@ public:
 	set<int> GetCrossedTriangles(Ray & ray);
 	vector<int> PrimitiveID() { return primitiveID; };
 	AxisAlignedBox3 Box() { return box; };
+	OctNode * Child(int childNumber) { 
+		return children[childNumber]; 
+	};
+	bool IsLeaf() { return children == NULL; };
 	~OctNode(void);
 };
 
