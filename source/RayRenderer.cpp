@@ -238,16 +238,6 @@ RayRenderer::RenderScene()
   if(cb)
     glDrawPixels(contextWidth, contextHeight, GL_RGB, GL_FLOAT, cb);
 
-  char buff[256];
-  sprintf(buff, "FPS:%05.1f  time:%05.0f  #triangles:%d #trianglesPercall:%d",
-	  1e3f/frameTime,
-	  frameTime,
-	  scene->triangles.size(),
-	  trianglesPerCall);
-  
-  glColor3f(1.0f, 1.0f, 1.0f);
-  renderText(10,20,buff);
-
   update();
 
   return;

@@ -32,7 +32,7 @@ public:
 	float Max(float a, float b, float c);
 
 	sglTriangle * GetTriangle(int triangleID);
-	int MaxPrimitive() { return 100; };
+	int MaxPrimitive() { return 5; };
 	float MinVolume() { return 0.0001f; };
 	void AddLeaf(OctNode * node);
 	bool CheckOctree();

@@ -35,7 +35,7 @@ set<int> OctNode::GetCrossedTriangles(Ray & ray)
 	set<int> result;
 	if(box.ComputeMinMaxT(ray, tMin, tMax))
 	{
-		if(children != NULL)
+		if(!IsLeaf())
 		{
 			set<int> temp;
 			for(int loop1 = 0; loop1 < CHILD_NUMBER; loop1++)
