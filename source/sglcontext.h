@@ -194,6 +194,20 @@ class SglContext {
 			}
 			sglDisable(SGL_DEPTH_TEST);
 		}
+
+		void rasterizeGL()
+		{
+			glEnable(GL_LIGHTING);
+			glEnable(GL_LIGHT0);
+			glShadeModel( GL_SMOOTH );
+
+			glBegin(GL_TRIANGLES);
+			for(int loop1 = 0; loop1 < primitive.size(); loop1++)
+			{
+				primitive[loop1]->rasterizeGL();
+			}
+			glEnd();
+		}
 };
 
 // FILLING POLYGONS STRUCTURES

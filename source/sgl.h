@@ -709,6 +709,7 @@ Compute an image using rasterization.
 */
 void sglRasterizeScene();
 
+void openRasterizeScene();
 
 /// Sets emissive material (for definition of area lights).
 /** 

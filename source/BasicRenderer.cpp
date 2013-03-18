@@ -82,7 +82,7 @@ BasicRenderer::initializeGL()
   glCullFace(GL_BACK);
   glFrontFace(GL_CCW);
 
-  glShadeModel( GL_FLAT );
+  glShadeModel( GL_SMOOTH );
   //glEnable(GL_AUTO_NORMAL);
   glDepthFunc( GL_LESS );
   glEnable( GL_DEPTH_TEST );
@@ -130,85 +130,12 @@ BasicRenderer::RenderScene()
 
   mmVector3 translation = -scene->box.Center();
   glTranslatef(translation.x, translation.y, translation.z);
-
-  /*
-  float projMatrix[16];
-  float modelMatrix[16];
-  glGetFloatv(GL_PROJECTION, projMatrix);
-  glGetFloatv(GL_MODELVIEW, modelMatrix);
-
-  FILE * fw = fopen("matrices", "wb");
-  fwrite(projMatrix, sizeof(float), 16, fw);
-  fwrite(modelMatrix, sizeof(float), 16, fw);
-  fclose(fw);
-  
-  FILE * fr = fopen("matrices", "rb");
-  fread(projMatrix, sizeof(float), 16, fr);
-  fread(modelMatrix, sizeof(float), 16, fr);
-  fclose(fr);
-  */
-
-  // Render the whole scene
-  // Just loop over all triangles
-  TriangleContainer::const_iterator ti = scene->triangles.begin();
-  glColor3f(1.0f, 0.0f, 0.0f);
   
   static long lastTime = -1;
-  
   long t1 = GetRealTime();
-
   float frameTime = TimeDiff(lastTime, t1);
-  
   lastTime = t1;
-
-  int i;
-  bool wireframe = mWireframe;
-  int calls = 0;
-
-  bool useBvh = false;
-  
-  if (!wireframe) {
-	
-	if (useBvh) {
-	  RenderBvh();
-	  if (1)
-		RenderBvhBoxes();
-
-	} else {
-	  
-	  while (ti != scene->triangles.end()) {
-		calls++;
-
-		// change gl state!  
-#if 0
-		glColor3ub((*ti)->color.r, (*ti)->color.g, (*ti)->color.b);
-#else
-		int maxCalls = scene->triangles.size()/trianglesPerCall;
-		mmColor color = RainbowColorMapping(calls/(float)maxCalls);
-		glColor3ub(color.r, color.g, color.b);
-#endif		
-		static int textureId = 0;
-		glBindTexture(GL_TEXTURE_2D, textures[textureId]);
-		textureId = (textureId + 1 )%textures.size();
-		
-		// issue render call
-		glBegin(GL_TRIANGLES);
-		for (i=0; ti != scene->triangles.end() && i < trianglesPerCall; ti++, i++)
-		  RenderTriangle(**ti);
-		glEnd();  
-	  }
-	}
-  }
-  else {
-    while (ti != scene->triangles.end()) {
-      for (; ti != scene->triangles.end(); ti++) {
-		glBegin(GL_LINE_LOOP);
-		RenderTriangle(**ti);
-		glEnd();
-      }
-    }
-  }
-
+  openRasterizeScene();
   long t2 = GetTime();
 
   // Here is the visualization of BVH cells

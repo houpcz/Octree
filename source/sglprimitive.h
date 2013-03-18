@@ -9,6 +9,7 @@
 #define _SGLPRIMITIVE_H_
 
 #include <cstdlib>
+#include <QGLWidget>
 #include "sglStructures.h"
 #include "sgl.h"
 
@@ -54,6 +55,7 @@ class Primitive
 			return false;
 		}
 		virtual void rasterize() = 0;
+		virtual void rasterizeGL() = 0;
 		virtual Vector3 normal(Vector3 * point) = 0;
 };
 
@@ -119,6 +121,17 @@ class sglTriangle : public Primitive
 				sglVertex3f(point3.x, point3.y, point3.z);
 			sglEnd();
 		}
+
+		void rasterizeGL()
+		{
+			//glColor3f(material->color.r, material->color.g, material->color.b);
+			glNormal3f(normalVector.x, normalVector.y, normalVector.z);
+			glVertex3f(point1.x, point1.y, point1.z);
+			glNormal3f(normalVector.x, normalVector.y, normalVector.z);
+			glVertex3f(point2.x, point2.y, point2.z);
+			glNormal3f(normalVector.x, normalVector.y, normalVector.z);
+			glVertex3f(point3.x, point3.y, point3.z);
+		}
 };
 
 class Sphere : public Primitive
@@ -163,6 +176,13 @@ class Sphere : public Primitive
 			sglBegin(SGL_POINTS);
 				sglVertex3f(pos.x, pos.y, pos.z);
 			sglEnd();
+		}
+
+		void rasterizeGL()
+		{
+			glVertex3f(pos.x, pos.y, pos.z);
+			glVertex3f(pos.x + 0.1, pos.y, pos.z);
+			glVertex3f(pos.x, pos.y + 0.1, pos.z);
 		}
 };
 

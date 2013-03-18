@@ -1628,26 +1628,26 @@ void sglRotateY(float angle) {
 	sglMultMatrix(matrix);
 }
 
-void sglOrtho(float left, float right, float bottom, float top, float near, float far) 
+void sglOrtho(float left, float right, float bottom, float top, float n, float f) 
 {
 	float matrix[16];
 	matrix[0] = 2 / (right - left); matrix[4] = 0;					matrix[8] = 0;					matrix[12] = -(right + left) / (right - left);
 	matrix[1] = 0;					matrix[5] = 2 / (top - bottom); matrix[9] = 0;					matrix[13] = -(top + bottom) / (top - bottom);
-	matrix[2] = 0;					matrix[6] = 0;					matrix[10] = -2 / (far - near); matrix[14] = -(far + near) / (far - near);
+	matrix[2] = 0;					matrix[6] = 0;					matrix[10] = -2 / (f - n); matrix[14] = -(f + n) / (f - n);
 	matrix[3] = 0;					matrix[7] = 0;					matrix[11] = 0;					matrix[15] = 1;
 	
 	sglMultMatrix(matrix);
 }
 
-void sglFrustum(float left, float right, float bottom, float top, float near, float far) 
+void sglFrustum(float left, float right, float bottom, float top, float n, float f) 
 {
 	float A = (right + left) / (right - left);
 	float B = (top + bottom) / (top - bottom);
-	float C = -(far + near) / (far - near);
-	float D = -(2 * far * near) / (far - near); 
+	float C = -(f + n) / (f - n);
+	float D = -(2 * f * n) / (f - n); 
 	float matrix[16];
-	matrix[0] = 2 * near / (right - left); matrix[4] = 0;						  matrix[8] = A;   matrix[12] = 0;
-	matrix[1] = 0;						   matrix[5] = 2 * near / (top - bottom); matrix[9] = B;   matrix[13] = 0;
+	matrix[0] = 2 * n / (right - left); matrix[4] = 0;						  matrix[8] = A;   matrix[12] = 0;
+	matrix[1] = 0;						   matrix[5] = 2 * n / (top - bottom); matrix[9] = B;   matrix[13] = 0;
 	matrix[2] = 0;						   matrix[6] = 0;						  matrix[10] = C;  matrix[14] = D;
 	matrix[3] = 0;						   matrix[7] = 0;						  matrix[11] = -1; matrix[15] = 0;
 		
@@ -1803,6 +1803,10 @@ void sglMakeOctree(bool faster)
 
 void sglRasterizeScene() {
 	ContextManager::Inst()->CC()->rasterize();
+}
+
+void openRasterizeScene() {
+	ContextManager::Inst()->CC()->rasterizeGL();
 }
 
 void sglEnvironmentMap(const int width,

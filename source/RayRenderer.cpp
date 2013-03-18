@@ -125,6 +125,7 @@ RayRenderer::RayRenderer(Scene *s)
 		sglVertex3f((**ti).vertices[i].x,(**ti).vertices[i].y,(**ti).vertices[i].z);
 	  sglEnd();
   }
+  scene->triangles.clear();
 
   sglMakeOctree(true);
 
@@ -175,19 +176,6 @@ RayRenderer::RayRenderer(Scene *s)
 
   mmVector3 translation = -scene->box.Center();
   sglTranslate(translation.x, translation.y, translation.z);
-
-  /*
-  float pMatrix[16];
-  float mMatrix[16];
-  FILE * fr = fopen("matrices", "rb");
-  fread(pMatrix, sizeof(float), 16, fr);
-  fread(mMatrix, sizeof(float), 16, fr);
-  fclose(fr);
-  
-  sglMatrixMode(SGL_PROJECTION);
-  sglLoadMatrix(pMatrix);
-  sglMatrixMode(SGL_MODELVIEW);
-  sglLoadMatrix(mMatrix);*/
 
   sglRayTraceScene();
 }
