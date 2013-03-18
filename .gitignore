@@ -11,6 +11,8 @@ source/data/
 *.tmp
 *.bak
 *.swp
+*.exe
+*.log
 *~.nib
 local.properties
 .classpath
