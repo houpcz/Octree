@@ -46,77 +46,45 @@ BasicRenderer::initializeGL()
 {
   // just log GL vendor and capabilities
   RendererWidget::initializeGL();
-
-  if (1) {
-    GLfloat mat_ambient[] = {  0.5, 0.5, 0.5, 1.0  };
-    GLfloat mat_diffuse[] = {  1.0, 1.0, 1.0, 1.0  };
-	
-    GLfloat light_ambient[] = {  0.2, 0.2, 0.2, 1.0  };
-    GLfloat light_diffuse[] = {  0.4, 0.4, 0.4, 1.0  };
-    GLfloat lmodel_ambient[] = {  0.3, 0.3, 0.3, 1.0  };
-	
-    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
-    glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-	
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
-    
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    
-    // set position of the light
-    GLfloat infinite_light[] = {  1.0, 0.8, 1.0, 0.0  };
-    glLightfv (GL_LIGHT0, GL_POSITION, infinite_light);
-    
-    glColorMaterial( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    //   glColorMaterial( GL_FRONT_AND_BACK, GL_SPECULAR);
-    glEnable(GL_COLOR_MATERIAL);
-  }
   
-  qglClearColor(QColor(0,0,128));
+  float intensity = 0.03;
+
+  float centerY = scene->box.Center().y; 
+  float centerX = scene->box.Center().x;
+  float centerZ = scene->box.Center().z;
+
+  GLfloat light_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
+  GLfloat light_diffuse[] =  { intensity * 0.8, intensity * 0.6, intensity * 0.8, 1.0 };
+  GLfloat light_specular[] = { intensity * 0.8, intensity * 0.6, intensity * 0.8, 1.0 };
+  GLfloat light_position1[] = { centerX, scene->box.max.y + 1.5f, centerZ, 0.0 };
+  GLfloat light_position2[] = { centerX, scene->box.max.y - 1.5f, centerZ, 0.0 };
+  GLfloat light_position3[] = { centerX, centerY, scene->box.max.z + 2.5, 0.0 };
+
+  glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+  glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+  glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+  glLightfv(GL_LIGHT0, GL_POSITION, light_position1);
+
+  glLightfv(GL_LIGHT1, GL_AMBIENT, light_ambient);
+  glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
+  glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular);
+  glLightfv(GL_LIGHT1, GL_POSITION, light_position2);
+
+  glLightfv(GL_LIGHT2, GL_AMBIENT, light_ambient);
+  glLightfv(GL_LIGHT2, GL_DIFFUSE, light_diffuse);
+  glLightfv(GL_LIGHT2, GL_SPECULAR, light_specular);
+  glLightfv(GL_LIGHT2, GL_POSITION, light_position3);
+
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+  glEnable(GL_LIGHT1);
+  glEnable(GL_LIGHT2);
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
-
   glDisable(GL_CULL_FACE);
   glCullFace(GL_BACK);
   glFrontFace(GL_CCW);
 
-  glShadeModel( GL_SMOOTH );
-  //glEnable(GL_AUTO_NORMAL);
-  glDepthFunc( GL_LESS );
-  glEnable( GL_DEPTH_TEST );
-
-  glDisable(GL_LIGHTING);
-
-  // glEnable( GL_NORMALIZE );
-
-
-  textures.resize(2);
-
-  // generate two dummy textures
-  for (int i=0; i < textures.size(); i++) {
-    glGenTextures(1, &textures[i]);
-    glBindTexture(GL_TEXTURE_2D, textures[i]);
-    int width = 512;
-    int height = 512;
-    
-    unsigned char *buffer = new unsigned char[width*height*3];
-    // generate a texture
-    glTexImage2D(GL_TEXTURE_2D,
-				 0,
-				 3,
-				 width,
-				 height,
-				 0,
-				 GL_RGB,
-				 GL_UNSIGNED_BYTE,
-				 buffer
-				 );
-    delete buffer;
-  }
-  
-  glEnable(GL_TEXTURE_2D);
 
   return;
 }

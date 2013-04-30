@@ -107,8 +107,8 @@ RayRenderer::RayRenderer(Scene *s)
 
   sglPointLight(centerX, centerY, scene->box.max.z + 2.5,
 				intensity, intensity, intensity);
-
-  sglMaterial(0.8f,
+  
+  sglMaterial(0.9f,
 			  0.6f,
 			  0.8f,
 			  1.0f,

@@ -374,7 +374,7 @@ void SglContext::raytrace()
 			if(idLight >= 0)
 				result = light[idLight]->color;
 			else
-				result = traceRay(ray, 2);
+				result = traceRay(ray, 1);
 			//cout << endl;
 
 			int id = width * loop1 + loop2;

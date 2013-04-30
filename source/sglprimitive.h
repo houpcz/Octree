@@ -124,7 +124,7 @@ class sglTriangle : public Primitive
 
 		void rasterizeGL()
 		{
-			//glColor3f(material->color.r, material->color.g, material->color.b);
+			glColor3f(material->color.r, material->color.g, material->color.b);
 			glNormal3f(normalVector.x, normalVector.y, normalVector.z);
 			glVertex3f(point1.x, point1.y, point1.z);
 			glNormal3f(normalVector.x, normalVector.y, normalVector.z);
